@@ -1,8 +1,11 @@
 def kadai6(a, b, op)
-  printf("%.100g\n", eval("#{a} #{op} #{b}"))
+  printf("%.3g\n", eval("#{a} #{op} #{b}"))
+  printf("%.20g\n", eval("#{a} #{op} #{b}"))
+  printf("%.30g\n", eval("#{a} #{op} #{b}"))
 end
 
 # 桁落ち
+kadai6(1.2, 1.0, '-')
 kadai6(1.12345, 1.0, '-')
 kadai6(1.1234512345, 1.12345, '-')
 
