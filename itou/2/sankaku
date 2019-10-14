@@ -1,0 +1,19 @@
+def sankaku
+  # iに0を代入する
+  i = 0
+  # iが90より小さい場合は以下を繰り返す
+  while i < 95 do
+    # もし0だったら0を出す
+    if i == 0
+      puts 0
+    end
+    # もし15だったら0.25
+    if i == 15
+      puts 0.25
+    end
+    puts(i)
+    # iに15を足す
+    i = i + 15
+# ここで繰り返しが終わる
+  end
+end
