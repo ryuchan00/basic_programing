@@ -23,7 +23,6 @@ def writeimage(name)
   return true
 end
 
-
 def mypicture
   pset(100, 80, 255, 0, 0)
   writeimage(__FILE__.match(%{(^.*).rb})[1] + "_t.ppm")
@@ -59,6 +58,7 @@ def mypicture3
   writeimage(__FILE__.match(%{(^.*).rb})[1] + "_circle2.ppm")
 end
 
+# 演習4a
 def mypicture4a
   fillcircle2(100, 120, 80)
   writeimage(__FILE__.match(%{(^.*).rb})[1] + "_circle3.ppm")
@@ -75,4 +75,51 @@ def fillcircle2(x0, y0, rad, r = 0, g = 0, b = 0)
     end
   end
 end
+
+def stripe(x0, y0, rad, r = 0, g = 0, b = 0)
+  fillcircle(100, 120, 80) do |x, y|
+    if x % 10 > 4
+      pset(x, y, 0, 255, 0)
+    else
+      pset(x, y, 255, 255, 255)
+    end
+  end
+end
+
+def border(x0, y0, rad, r = 0, g = 0, b = 0)
+  fillcircle(100, 120, 80) do |x, y|
+    if y % 10 > 4
+      pset(x, y, 0, 255, 0)
+    else
+      pset(x, y, 255, 255, 255)
+    end
+  end
+end
+
+
+def check(x0, y0, rad, r = 0, g = 0, b = 0)
+  fillcircle(100, 120, 80) do |x, y|
+    if x % 10 > 4 || y % 10 > 4
+      if x % 10 > 4 && y % 10 > 4
+        pset(x, y, 0, 255, 0)
+      else
+        pset(x, y, 0, 200, 0)
+      end
+    else
+      pset(x, y, 0, 0, 0)
+    end
+  end
+end
+
+
+# 演習4b
+def mypicture4b
+  stripe(100, 120, 80)
+  writeimage(__FILE__.match(%{(^.*).rb})[1] + "_stripe.ppm")
+  border(100, 120, 80)
+  writeimage(__FILE__.match(%{(^.*).rb})[1] + "_border.ppm")
+  check(100, 120, 80)
+  writeimage(__FILE__.match(%{(^.*).rb})[1] + "_check.ppm")
+end
+
 
