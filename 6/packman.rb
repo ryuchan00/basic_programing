@@ -53,6 +53,7 @@ def fillrect(x, y, w, h, r = 0, g = 0, b = 0, a = 0.0)
   j1 = (y + 0.5 * h).to_i
   i0 = (x - 0.5 * w).to_i
   i1 = (x + 0.5 * w).to_i
+
   j0.step(j1) do |j|
     i0.step(i1) do |i|
       if block_given? then
@@ -195,13 +196,30 @@ end
 
 # --- ここからパックマンの敵、ゴーストを作るためのメソッド集
 
+# 凸型に塗りつぶすメソッド
+# 正方形を4つ並べる
+# x,yは3辺が正方形に面している正方形の対角線の軸を指定する
+#   □
+#  □■□ この黒い正方形のこと
+def fill_convex(x, y, h, r = 0, g = 0, b = 0, a = 0.0)
+  fillrect(x, y, h, h, r, g, b, a)
+  # 上
+  fillrect(x, y - h, h, h, r, g, b, a)
+  # 左
+  fillrect(x - h, y, h, h, r, g, b, a)
+  # 右
+  fillrect(x + h, y, h, h, r, g, b, a)
+end
+
 # nはゴーストの数
 def ghosts(n = 1)
+  w = 60
   # まずゴーストの胴体である長方形を配置する
-  fillrect(30, 40, 60, 30, 0, 0, 255, 0.0)
+  fillrect(30, 40, w, 30, 0, 0, 255, 0.0)
   # ゴーストの頭となるような楕円を配置する
-  fillellipse(100, 80, 60, 40, 0, 0, 255, 0.0)
+  fillellipse(30, 25, w / 2, 10, 0, 0, 255, 0.0)
   # 足を切り抜く
+  fill_convex(w / 3 / 2, 100, 5, 0, 255, 255, 0.0)
   writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
 end
 
