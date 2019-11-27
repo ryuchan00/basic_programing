@@ -27,8 +27,11 @@ def writeimage(name)
 end
 
 def fillcircle(x, y, rad, r = 0, g = 0, b = 0, a = 0.0)
-  j0 = (y - rad).to_i; j1 = (y + rad).to_i
-  i0 = (x - rad).to_i; i1 = (x + rad).to_i
+  j0 = (y - rad).to_i
+  j1 = (y + rad).to_i
+  i0 = (x - rad).to_i
+  i1 = (x + rad).to_i
+
   j0.step(j1) do |j|
     i0.step(i1) do |i|
       if (i - x) ** 2 + (j - y) ** 2 < rad ** 2
@@ -160,6 +163,26 @@ def fillline(x0, y0, x1, y1, w, r = 0, g = 0, b = 0, a = 0.0)
     [y0 - dy, y0 + dy, y1 + dy, y1 - dy, y0 - dy], r, g, b, a)
 end
 
+# 楕円
+def fillellipse(x, y, rx, ry, r = 0, g = 0, b = 0, a = 0.0)
+  j0 = (y - ry).to_i
+  j1 = (y + ry).to_i
+  i0 = (x - rx).to_i
+  i1 = (x + rx).to_i
+
+  j0.step(j1) do |j|
+    i0.step(i1) do |i|
+      if ((i - x).to_f / rx) ** 2 + ((j - y).to_f / ry) ** 2 < 1.0
+        if block_given? then
+          yield(i, j)
+        else
+          pset(i, j, r, g, b, a)
+        end
+      end
+    end
+  end
+end
+
 def mypicture4
   # fillcircle(150, 30, 60, 255, 100, 70, 0.0)
   # fillrect(60, 100, 120, 80, 80, 220, 255, 0.6)
@@ -177,5 +200,9 @@ def ghosts(n = 1)
   # まずゴーストの胴体である長方形を配置する
   fillrect(30, 40, 60, 30, 0, 0, 255, 0.0)
   # ゴーストの頭となるような楕円を配置する
+  fillellipse(100, 80, 60, 40, 0, 0, 255, 0.0)
+  # 足を切り抜く
   writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
 end
+
+ghosts
