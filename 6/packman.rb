@@ -221,7 +221,7 @@ def ghosts(n = 1)
   # ゴーストの頭となるような楕円を配置する
   fillellipse(30, 25, w / 2, 10, 0, 255, 255, 0.0)
   # 足を切り抜く
-  fill_convex(9, 52, 6, 0, 255, 255, 0.0)
+  fill_convex(10, 52, 6, 0, 255, 255, 0.0)
   writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
 end
 
