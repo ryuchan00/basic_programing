@@ -213,15 +213,28 @@ def fill_convex(x, y, h, r = 0, g = 0, b = 0, a = 0.0)
   fillrect(x + h, y, h, h, r, g, b, a)
 end
 
+def two_convex(y, w, r = 0, g = 0, b = 0, a = 0.0)
+  # 足の太さは4px
+  2.times do |i|
+    # 0,1
+    fill_convex(w / 3 / 2 + w / 3 * 2 * i, y, 4, r, g, b, a)
+  end
+end
+
 # nはゴーストの数
 def ghosts(n = 1)
-  w = 60 # 横
+  w = 60 # 胴体部分に当たる長方形の横の長さ
+  h = 30 # 胴体部分に当たる長方形の縦の長さ
+  x = 30 # 胴体部分に当たる長方形のx軸
+  y = 40 # 胴体部分に当たる長方形のy軸
+  s = 4 # ゴーストの両足に当たる凸を構成する正方形4つのうちの1辺の長さ
   # まずゴーストの胴体である長方形を配置する
-  fillrect(30, 40, w, 30, 0, 0, 255, 0.0)
+  fillrect(x, y, w, h, 0, 255, 255, 0.0)
   # ゴーストの頭となるような楕円を配置する
-  fillellipse(30, 25, w / 2, 10, 0, 255, 255, 0.0)
+  fillellipse(x, 25, w / 2, 10, 0, 255, 255, 0.0)
   # 足を切り抜く
-  fill_convex(10, 52, 6, 0, 255, 255, 0.0)
+  two_convex(y + h / 2 - s / 2, w, 255, 255, 255, 0.0)
+  fillrect(x, y + h / 2 - s, s * 2, s * 2, 255, 255, 255, 0.0)
   writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
 end
 
