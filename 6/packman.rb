@@ -149,6 +149,4 @@ def ghosts(n = 1)
   end
 end
 
-# 使い方
-# load 'packman.rb'
-# ghosts 5
+ghosts 5
