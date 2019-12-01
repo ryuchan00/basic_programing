@@ -115,6 +115,8 @@ def ghosts(n = 1)
   w = 60 # 胴体部分に当たる長方形の横の長さ
   h = 30 # 胴体部分に当たる長方形の縦の長さ
   s = 4 # ゴーストの両足に当たる凸を構成する正方形4つのうちの1辺の長さ
+  rx = 6
+  ry = 8
 
   # 赤、ピンク、水色、オレンジ
   red = [255, 0, 0] # 赤
@@ -135,8 +137,6 @@ def ghosts(n = 1)
     two_convex(x, y + h / 2 - s / 2, w, 255, 255, 255, 0.0)
     fillrect(x, y + h / 2 - s, s * 2, s * 2, 255, 255, 255, 0.0)
     # ゴーストの目となるような楕円を配置する
-    rx = 6
-    ry = 8
     # 左目
     fillellipse(x - w / 4, y - h / 4, rx, ry, 255, 255, 255, 0.0)
     # 目玉
@@ -145,8 +145,8 @@ def ghosts(n = 1)
     fillellipse(x + w / 4, y - h / 4, rx, ry, 255, 255, 255, 0.0)
     # 目玉
     fillcircle(x + w / 4 - rx / 2, y - h / 4 + ry / 3, 3, 0, 0, 0, 0.0)
-    writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
   end
+  writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
 end
 
 ghosts 5
