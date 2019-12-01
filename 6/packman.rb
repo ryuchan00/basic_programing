@@ -82,22 +82,6 @@ def filldonut(x, y, r1, r2, r = 0, g = 0, b = 0, a = 0.0)
   end
 end
 
-def fillellipse(x, y, rx, ry, r = 0, g = 0, b = 0, a = 0.0)
-  j0 = (y - ry).to_i; j1 = (y + ry).to_i
-  i0 = (x - rx).to_i; i1 = (x + rx).to_i
-  j0.step(j1) do |j|
-    i0.step(i1) do |i|
-      if ((i - x).to_f / rx) ** 2 + ((j - y).to_f / ry) ** 2 < 1.0
-        if block_given? then
-          yield(i, j)
-        else
-          pset(i, j, r, g, b, a)
-        end
-      end
-    end
-  end
-end
-
 def fillrotellipse(x, y, rx, ry, theta, r = 0, g = 0, b = 0, a = 0.0)
   d = (
   if rx > ry then
@@ -235,6 +219,17 @@ def ghosts(n = 1)
   # 足を切り抜く
   two_convex(y + h / 2 - s / 2, w, 255, 255, 255, 0.0)
   fillrect(x, y + h / 2 - s, s * 2, s * 2, 255, 255, 255, 0.0)
+  # ゴーストの目となるような楕円を配置する
+  rx = 6
+  ry = 8
+  # 左目
+  fillellipse(x - w / 4, y - h / 4, rx, ry, 255, 255, 255, 0.0)
+  # 目玉
+  fillellipse(x - w / 4 - rx / 2, y - h / 4 + ry / 3, 3, 3, 0, 0, 0, 0.0)
+  # 右目
+  fillellipse(x + w / 4, y - h / 4, rx, ry, 255, 255, 255, 0.0)
+  # 目玉
+  fillellipse(x + w / 4 - rx / 2, y - h / 4 + ry / 3, 3, 3, 0, 0, 0, 0.0)
   writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
 end
 
