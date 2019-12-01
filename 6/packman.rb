@@ -205,10 +205,12 @@ end
 
 # nはゴーストの数
 def ghosts(n = 1)
+  if n > 5
+    puts 'ghosts の引数は5以下にしてください'
+    return
+  end
   w = 60 # 胴体部分に当たる長方形の横の長さ
   h = 30 # 胴体部分に当たる長方形の縦の長さ
-  x = rand((w / 2)..(300 - w / 2)) # 胴体部分に当たる長方形のx軸
-  y = rand((10 + h / 2)..(200 - h / 2)) # 胴体部分に当たる長方形のy軸
   s = 4 # ゴーストの両足に当たる凸を構成する正方形4つのうちの1辺の長さ
 
   # 赤、ピンク、水色、オレンジ
@@ -216,27 +218,32 @@ def ghosts(n = 1)
   pink = [255, 182, 193] # ピンク
   light_blue = [0, 255, 255]
   orange = [255, 165, 0]
-  color = [red, pink, light_blue, orange].sample
 
-  # まずゴーストの胴体である長方形を配置する
-  fillrect(x, y, w, h, color[0], color[1], color[2], 0.0)
-  # ゴーストの頭となるような楕円を配置する
-  fillellipse(x, y - h / 2, w / 2, 10, color[0], color[1], color[2], 0.0)
-  # 足を切り抜く
-  two_convex(x, y + h / 2 - s / 2, w, 255, 255, 255, 0.0)
-  fillrect(x, y + h / 2 - s, s * 2, s * 2, 255, 255, 255, 0.0)
-  # ゴーストの目となるような楕円を配置する
-  rx = 6
-  ry = 8
-  # 左目
-  fillellipse(x - w / 4, y - h / 4, rx, ry, 255, 255, 255, 0.0)
-  # 目玉
-  fillellipse(x - w / 4 - rx / 2, y - h / 4 + ry / 3, 3, 3, 0, 0, 0, 0.0)
-  # 右目
-  fillellipse(x + w / 4, y - h / 4, rx, ry, 255, 255, 255, 0.0)
-  # 目玉
-  fillellipse(x + w / 4 - rx / 2, y - h / 4 + ry / 3, 3, 3, 0, 0, 0, 0.0)
-  writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
+  n.times do
+    x = rand((w / 2)..(300 - w / 2)) # 胴体部分に当たる長方形のx軸
+    y = rand((10 + h / 2)..(200 - h / 2)) # 胴体部分に当たる長方形のy軸
+    color = [red, pink, light_blue, orange].sample
+
+    # まずゴーストの胴体である長方形を配置する
+    fillrect(x, y, w, h, color[0], color[1], color[2], 0.0)
+    # ゴーストの頭となるような楕円を配置する
+    fillellipse(x, y - h / 2, w / 2, 10, color[0], color[1], color[2], 0.0)
+    # 足を切り抜く
+    two_convex(x, y + h / 2 - s / 2, w, 255, 255, 255, 0.0)
+    fillrect(x, y + h / 2 - s, s * 2, s * 2, 255, 255, 255, 0.0)
+    # ゴーストの目となるような楕円を配置する
+    rx = 6
+    ry = 8
+    # 左目
+    fillellipse(x - w / 4, y - h / 4, rx, ry, 255, 255, 255, 0.0)
+    # 目玉
+    fillellipse(x - w / 4 - rx / 2, y - h / 4 + ry / 3, 3, 3, 0, 0, 0, 0.0)
+    # 右目
+    fillellipse(x + w / 4, y - h / 4, rx, ry, 255, 255, 255, 0.0)
+    # 目玉
+    fillellipse(x + w / 4 - rx / 2, y - h / 4 + ry / 3, 3, 3, 0, 0, 0, 0.0)
+    writeimage(__FILE__.match(%{(^.*).rb})[1] + ".ppm")
+  end
 end
 
-ghosts
+ghosts 5
