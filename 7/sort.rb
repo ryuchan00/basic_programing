@@ -52,7 +52,7 @@ p randarray 10
 def arrayminrange(a, i, j)
   min = i
   (i..j).each do |k|
-    min = k if a[i] > a[k]
+    min = k if a[min] > a[k]
   end
   return min
 end
@@ -66,6 +66,4 @@ def selectionsort(a)
 end
 
 p arrayminrange([100, 2, 5, 10], 1, 3)
-p a
-
-
+p selectionsort([100, 5, 4, 10, 1])
