@@ -16,3 +16,14 @@ def insertionsort(a)
   end
   return a
 end
+
+def randarray(n)
+  return Array.new(n) do rand(10000) end
+end
+
+def bench
+  t1 = Process.times.utime
+  yield
+  t2 = Process.times.utime
+  return t2 - t1
+end

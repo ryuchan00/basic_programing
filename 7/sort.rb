@@ -67,3 +67,16 @@ end
 
 p arrayminrange([100, 2, 5, 10], 1, 3)
 p selectionsort([100, 5, 4, 10, 1])
+
+def randarray(n)
+  return Array.new(n) do
+    rand(10000)
+  end
+end
+
+def bench
+  t1 = Process.times.utime
+  yield
+  t2 = Process.times.utime
+  return t2 - t1
+end
