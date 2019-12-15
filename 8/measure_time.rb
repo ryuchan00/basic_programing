@@ -50,17 +50,12 @@ end
 
 def sekibun3(n)
   count = 0
-  a = 4 / 3.to_f
   n.times do
     x = rand * 2
-    y = rand
+    y = rand * 2
     if x >= y ** 2
       count = count + 1
     end
   end
-
-  p a
-  p count
-  p n
-  return a * count.to_f /  n
+  return count.to_f /  n * 3
 end
