@@ -1,5 +1,5 @@
 require 'spec_helper'
-require File.join(File.dirname(__FILE__), '/../../8/measure_time')
+require File.join(File.dirname(__FILE__), '/../../8/distribution')
 
 describe 'pirandom' do
   it do
