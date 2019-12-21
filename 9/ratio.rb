@@ -37,6 +37,24 @@ class Ratio
     return Ratio.new(@a * d + @b * c, @b * d) # a/b+c/d = (ad+bc)/bd
   end
 
+  def -(r)
+    c = r.getDividend
+    d = r.getDivisor
+    return Ratio.new(@a * d - @b * c, @b * d) # a/b-c/d = (ad-bc)/bd
+  end
+
+  def *(r)
+    c = r.getDividend
+    d = r.getDivisor
+    return Ratio.new(@a * c, @b * d) # a/b*c/d = (a*c)/b*d
+  end
+
+  def /(r)
+    c = r.getDividend
+    d = r.getDivisor
+    return Ratio.new(@a * d, @b * c)
+  end
+
   def gcd(x, y)
     while true do
       if x > y
@@ -53,3 +71,12 @@ class Ratio
     end
   end
 end
+
+a = Ratio.new(3, 5)
+puts a
+b = Ratio.new(8, 7)
+puts b
+puts a + b
+puts a - b
+puts a * b
+puts a / b
