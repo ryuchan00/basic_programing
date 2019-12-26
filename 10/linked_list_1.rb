@@ -25,12 +25,12 @@ end
 p listcat(p)
 
 def listcatrev(p)
-  datas = []
+  linked_string = ''
   while p != nil do
-    datas.push(p.data.to_s)
+    linked_string = p.data.to_s + linked_string
     p = p.next
   end
-  return datas.reverse.join
+  return linked_string
 end
 
 p listcatrev(p)
