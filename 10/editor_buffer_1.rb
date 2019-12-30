@@ -21,6 +21,14 @@ class Buffer
     @index = 0
   end
 
+  def eof
+    while !ateof do
+      @prev = @cur
+      @cur = @cur.next
+      @index += 1
+    end
+  end
+
   def forward
     if ateof
       return
@@ -35,7 +43,6 @@ class Buffer
     if at_top? || (ateof && @prev.data.empty?)
       return
     end
-    tmp = @prev.dup
     @cur = @prev
     p = @head.dup
     (@index + 1).times do
@@ -46,8 +53,17 @@ class Buffer
   end
 
   def reverse
-    # curは、今のリストの指し示しているdataに追従する
-
+    # curの位置は先頭に戻る
+    top
+    p = @cur.dup
+    eof
+    while p.next != nil do
+      @cur = Cell.new(p.data, @cur)
+      p = p.next
+    end
+    @head.next = @cur
+    @prev = @head
+    @index = 0
   end
 
   def insert(s)
@@ -86,6 +102,8 @@ e.insert('abc')
 e.insert('def')
 e.insert('ghi')
 e.top
+e.print
+e.reverse
 e.print
 e.forward
 e.print
