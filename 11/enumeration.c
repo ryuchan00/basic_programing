@@ -1,11 +1,10 @@
 #include <stdio.h>
-#include <math.h>
 
 double square_root(double n) {
     double a, b, i, x;
-    for (i = 1; i < n; i += 0.0001) {
+    for (i = 0; i < n; i += 0.0001) {
         x = 1 + i;
-        a = pow(x, 2);
+        a = x * x;
         b = a - n;
         if (b >= 0) {
             return x;
