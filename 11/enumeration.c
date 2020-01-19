@@ -2,7 +2,7 @@
 
 double square_root(double n) {
     double a, b, i, x;
-    for (i = 0; i < n; i += 0.0001) {
+    for (i = 0; i < n; i += 0.000001) {
         x = 1 + i;
         a = x * x;
         b = a - n;
