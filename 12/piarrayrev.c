@@ -1,25 +1,18 @@
-// ref: https://joho.g-edu.uec.ac.jp/moodle3/pluginfile.php/65085/mod_resource/content/3/ohp12.pdf
 #include <stdio.h>
-#include <stdlib.h>
 
 void piarrayrev(int n, int a[]) {
-    if (a < b) {
-        *p = a;
-        *q = b;
-    }
-    else {
-        *p = b;
-        *q = a;
+    int i, j;
+    for (i = 0; i < n; ++i) {
+//        printf("(%d)", i);
+        j = n - 1 - i;
+//        printf("(%d)", j);
+        printf(" %2d", a[j]);
+        if (i % 10 == 9 || i == n - 1) { printf("\n"); }
     }
 }
 
 int main(void) {
-    double a, b, x, y;
-    printf("a> ");
-    scanf("%lf", &a);
-    printf("b> ");
-    scanf("%lf", &b);
-    sort2(a, b, &x, &y);
-    printf("smaller = %g, larger = %g\n", x, y);
+    int a[24] = {1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8};
+    piarrayrev(24, a);
     return 0;
 }

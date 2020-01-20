@@ -4,6 +4,7 @@
 void piarray(int n, int a[]) {
     int i;
     for (i = 0; i < n; ++i) {
+//        printf("(%d)", i);
         printf(" %2d", a[i]);
         if (i % 10 == 9 || i == n - 1) { printf("\n"); }
     }
