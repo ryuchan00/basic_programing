@@ -16,7 +16,7 @@ int tblsize = 0;
 int tbl_get(char *k) {
     int i;
     for (i = 0; i < tblsize; ++i) {
-        if (strcmp(tbl[i].key, k) == 0) { return tbl[i].age; }
+        if (strcmp(tbl[i].key, k) == 0) { return tbl[i]; }
     }
     return -1;
 }
@@ -35,6 +35,5 @@ bool tbl_put(char *k, char name, int age) {
     strcpy(s, k);
     tbl[tblsize].key = s;
     tbl[tblsize].age = age;
-    ++tblsize;
     return true;
 }

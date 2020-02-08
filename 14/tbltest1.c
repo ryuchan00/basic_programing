@@ -5,7 +5,16 @@
 #include <stdlib.h>
 #include "tbl.h"
 
-bool getl(char s[], int lim) {
+struct ent {
+    char *key;
+    char name;
+    int age;
+}
+
+
+        bool
+
+getl(char s[], int lim) {
     int c, i = 0;
     for (c = getchar(); c != EOF && c != '\n';
          c = getchar()) {
@@ -17,15 +26,25 @@ bool getl(char s[], int lim) {
 }
 
 int main(void) {
-    char b1[100], b2[100];
-    int val;
+    char b1[100], b2[100], b3[100];
+    int age;
+    char name;
     while (true) {
+        // key
         printf("key (empty for quit)> ");
         if (!getl(b1, 100) || strlen(b1) == 0) { return 0; }
+        // age
         printf("age (-1 for query)> ");
         getl(b2, 100);
-        val = atoi(b2);
-        if (val != -1) { tbl_put(b1, val); }
-        else { printf("tbl[%s] == %d\n", b1, tbl_get(b1)); }
+        age = atoi(b2);
+        if (age == -1) {
+            struct ent result = tbl_get(b1);
+            printf("tbl[%s] == %d %d\n", ent->name, ent->age);
+        }
+        // name
+        printf("name (-1 for query)> ");
+        getl(b3, 100);
+        name = b3;
+        tbl_put(b1, age, name);
     }
 }
