@@ -1,3 +1,3 @@
-bool tbl_put(char *k, char name, int age);
+bool tbl_put(char *k, char *name, int age);
 
-int tbl_get(char *k);
+void tbl_get(char *k);
