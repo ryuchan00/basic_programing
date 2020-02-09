@@ -29,8 +29,6 @@ int main(void) {
         age = atoi(b2);
         if (age == -1) {
             tbl_get(b1);
-//            printf("tbl[%s] == %d\n", b1, tbl_get(b1));
-//            printf("tbl[%s] == %d %d\n", tbl_get(b1)->name, tbl_get(b1)->age);
         } else {
             // name
             printf("name (-1 for query)> ");
