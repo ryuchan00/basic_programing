@@ -26,8 +26,26 @@ void tbl_get(char *k) {
     return;
 }
 
+void tbl_delete(char *k) {
+    int i;
+    for (i = 0; i < tblsize; ++i) {
+        if (strcmp(tbl[i].key, k) == 0) {
+            printf("delete tbl[%s] name:%s age:%d\n", tbl[i].key, tbl[i].name, tbl[i].age);
+            // 削除したら、ポインターを前詰処理する
+            for (i = i + 1; i < tblsize; ++i) {
+                tbl[i - 1] = tbl[i];
+            }
+            --tblsize;
+            return;
+        }
+    }
+    printf("not found\n");
+    return;
+}
+
 bool tbl_put(char *k, char *name, int age) {
     int i;
+    // 更新はageだけにしておく
     for (i = 0; i < tblsize; ++i) {
         if (strcmp(tbl[i].key, k) == 0) {
             tbl[i].age = age;
@@ -38,6 +56,7 @@ bool tbl_put(char *k, char *name, int age) {
     char *s = (char *) malloc(strlen(k) + 1);
     char *t = (char *) malloc(strlen(k) + 1);
     if (s == NULL) { return false; }
+    if (t == NULL) { return false; }
     strcpy(s, k);
     tbl[tblsize].key = s;
     strcpy(t, name);
