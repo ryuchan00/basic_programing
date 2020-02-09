@@ -31,7 +31,7 @@ int main(void) {
             tbl_get(b1);
         } else {
             // name
-            printf("name (-1 for query)> ");
+            printf("name> ");
             getl(b3, 100);
             tbl_put(b1, b3, age);
         }

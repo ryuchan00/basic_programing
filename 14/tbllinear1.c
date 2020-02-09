@@ -18,7 +18,7 @@ void tbl_get(char *k) {
     int i;
     for (i = 0; i < tblsize; ++i) {
         if (strcmp(tbl[i].key, k) == 0) {
-            printf("tbl[%s] == %s %d\n", tbl[i].key, tbl[i].name, tbl[i].age);
+            printf("tbl[%s] name:%s age:%d\n", tbl[i].key, tbl[i].name, tbl[i].age);
             return;
         }
     }
