@@ -1,9 +1,12 @@
 #include <stdio.h>
 
 int main(void) {
-    int x;
-    printf("x> ");
-    scanf("%d", &x);
-    printf("%d\n", x);
+    char x[] = "abc";
+    char y = 'a';
+//    printf("x> ");
+//    scanf("%d", &x);
+    printf("%s\n", x + 1); // bc
+    printf("%s\n", x); // abc
+    printf("%c\n", y); // a
     return 0;
 }
